@@ -12,13 +12,13 @@ function init() {
         orientation: "h",
         marker: {
             color: 'rgb(142,124,195)'
-          }
+        }
     }];
-    layout={
-        title:"Top 10 OTUs found for id"
+    layout = {
+        title: "Top 10 OTUs found for id"
     }
 
-    Plotly.newPlot("bar", data,layout);
+    Plotly.newPlot("bar", data, layout);
 };
 
 
@@ -41,7 +41,7 @@ listId.on("click", function getData() {
     d3.json(json_path).then(function (data) {
         // samples key in json
         sample = data.samples
-
+        metadata1 = data.metadata
         // loop through and add the id to option 
         sample.forEach(value => optionList.add(new Option(value.id)));
 
@@ -49,20 +49,21 @@ listId.on("click", function getData() {
 
 });
 
-d3.selectAll("body").on("change", updatePage);
+d3.select("#selDataset").on("change", updatePage);
+d3.select("#sample-metadata").on("change", updatePage)
 // bar chart data 
 function updatePage() {
     // Use D3 to select the dropdown menu
     var dropdownMenu = d3.selectAll("#selDataset").node();
     // Assign the dropdown menu option to a variable
-    var selectedOption = dropdownMenu.value;
-    console.log(selectedOption);
+    let selectedOption = dropdownMenu.value;
+    // console.log(selectedOption);
     // filter data from the user 
     otuIdsFilter = sample.filter(row => row.id === selectedOption)[0];
 
     // label chart and convert it to string 
     arrayOtu = otuIdsFilter.otu_ids;
-    y = arrayOtu.slice(0, 10).map(yy=>"OTU "+ yy.toString()+"  ").reverse();
+    y = arrayOtu.slice(0, 10).map(yy => "OTU " + yy.toString() + "  ").reverse();
 
     // values in x asis 
     arraySample = otuIdsFilter.sample_values;
@@ -77,7 +78,26 @@ function updatePage() {
     Plotly.restyle("bar", "y", [y]);
     Plotly.restyle("bar", "text", [text]);
 
-    console.log("y",y)
+    d3.json(json_path).then(function (data) {
+        metadata1 = data.metadata
+
+        console.log("metadata1", metadata1)
+        console.log(selectedOption);
+
+        metadataFilter = metadata1.filter(row=>  row.id === parseInt(selectedOption))[0];
+        console.log("metadataFilter", metadataFilter)
+
+        // console.log("metadataFilter",Object.keys(metadataFilter).length)
+        let para = ""
+        for (var key in metadataFilter) {
+            para += key + ":" + metadataFilter[key]+ "\n";
+        
+        }
+        console.log(d3.select("#sample-metadata"));
+        d3.select("#sample-metadata").node().innerHTML = para;
+
+    })
+
 
 };
 init();
