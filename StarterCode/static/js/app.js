@@ -63,7 +63,7 @@ function updatePage() {
 
     // label chart and convert it to string 
     arrayOtu = otuIdsFilter.otu_ids;
-    y = arrayOtu.slice(0, 10).map(yy => "OTU " + yy.toString() + "  ").reverse();
+    y = arrayOtu.slice(0, 10).map(yy => "OTU " + yy.toString()).reverse();
 
     // values in x asis 
     arraySample = otuIdsFilter.sample_values;
@@ -90,10 +90,11 @@ function updatePage() {
         // console.log("metadataFilter",Object.keys(metadataFilter).length)
         let para = ""
         for (var key in metadataFilter) {
-            para += key + ":" + metadataFilter[key]+ "\n";
+            para += key + ":" + metadataFilter[key]+ "\n"
         
-        }
-        console.log(d3.select("#sample-metadata"));
+        };
+
+        console.log(para);
         d3.select("#sample-metadata").node().innerHTML = para;
 
     })
