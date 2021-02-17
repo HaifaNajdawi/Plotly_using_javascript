@@ -27,14 +27,16 @@ function init(){
         text: ['A', 'B', 'C', 'D'],
         marker: {
             color: ['rgb(93, 164, 214)', 'rgb(255, 144, 14)', 'rgb(44, 160, 101)', 'rgb(255, 65, 54)'],
-            opacity: [1, 0.8, 0.6, 0.4],
+            // opacity: [1, 0.8, 0.6, 0.4],
             size: [40, 60, 80, 100]}
         }];
         var layoutBubble = {
             title: 'Marker Size and Color',
-            showlegend: false,
-            height: 600,
-            width: 600
+            xaxis:{title:"OTU Ids"},
+            yaxis:{title:"Sample Values"}
+            // showlegend: false,
+            // height: 600,
+            // width: 600
           };
     Plotly.newPlot("bubble",bubbleData,layoutBubble)
 
@@ -92,7 +94,7 @@ function updatePage() {
     arrayText = otuIdsFilter.otu_labels;
     text = arrayText.slice(0, 10).reverse();
 
-    // update the plot data 
+    // update the bar plot data 
     Plotly.restyle("bar", "x", [x]);
     Plotly.restyle("bar", "y", [y]);
     Plotly.restyle("bar", "text", [text]);
@@ -100,8 +102,8 @@ function updatePage() {
     // update bubble chart data
     Plotly.restyle("bubble","x",[arrayOtu])
     Plotly.restyle("bubble","y",[arraySample]);
-    Plotly.restyle("bubble","marker[size]",[arraySample])
-    Plotly.restyle("bubble","marker[color]",[arrayOtu])
+    Plotly.restyle("bubble","marker.size",[arraySample])
+    Plotly.restyle("bubble","marker.color",[arrayOtu])
     Plotly.restyle("bubble","text",[arrayText])
 
 
