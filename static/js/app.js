@@ -15,7 +15,7 @@ function init() {
         }
     }];
     layoutBar = {
-        title: "Top 10 OTUs found for id"
+        title: "<b>Top 10 OTUs found for this id</b>"
     }
 
     Plotly.newPlot("bar", dataBar, layoutBar);
@@ -32,7 +32,7 @@ function init() {
         }
     }];
     var layoutBubble = {
-        title: 'OTU Ids To Sample Values ',
+        title: '<b>OTU Ids To Sample Values </b>',
         xaxis: { title: "OTU Ids" },
         yaxis: { title: "Sample Values" }
         // showlegend: false,
