@@ -1,7 +1,7 @@
 json_path = "../../data/samples.json"
 
-function init() {
-    data = [{
+function init(){ 
+    dataBar = [{
         // values
         x: [5, 6, 7, 8],
         // labels
@@ -14,11 +14,30 @@ function init() {
             color: 'rgb(142,124,195)'
         }
     }];
-    layout = {
+    layoutBar = {
         title: "Top 10 OTUs found for id"
     }
 
-    Plotly.newPlot("bar", data, layout);
+    Plotly.newPlot("bar", dataBar, layoutBar);
+
+    bubbleData = [{
+        x: [1, 2, 3, 4],
+        y: [10, 11, 12, 13],
+        mode: 'markers',
+        text: ['A', 'B', 'C', 'D'],
+        marker: {
+            color: ['rgb(93, 164, 214)', 'rgb(255, 144, 14)', 'rgb(44, 160, 101)', 'rgb(255, 65, 54)'],
+            opacity: [1, 0.8, 0.6, 0.4],
+            size: [40, 60, 80, 100]}
+        }];
+        var layoutBubble = {
+            title: 'Marker Size and Color',
+            showlegend: false,
+            height: 600,
+            width: 600
+          };
+    Plotly.newPlot("bubble",bubbleData,layoutBubble)
+
 };
 
 
@@ -78,20 +97,28 @@ function updatePage() {
     Plotly.restyle("bar", "y", [y]);
     Plotly.restyle("bar", "text", [text]);
 
+    // update bubble chart data
+    Plotly.restyle("bubble","x",[arrayOtu])
+    Plotly.restyle("bubble","y",[arraySample]);
+    Plotly.restyle("bubble","marker[size]",[arraySample])
+    Plotly.restyle("bubble","marker[color]",[arrayOtu])
+    Plotly.restyle("bubble","text",[arrayText])
+
+
     d3.json(json_path).then(function (data) {
         metadata1 = data.metadata
 
         console.log("metadata1", metadata1)
         console.log(selectedOption);
 
-        metadataFilter = metadata1.filter(row=>  row.id === parseInt(selectedOption))[0];
+        metadataFilter = metadata1.filter(row => row.id === parseInt(selectedOption))[0];
         console.log("metadataFilter", metadataFilter)
 
         // console.log("metadataFilter",Object.keys(metadataFilter).length)
         let para = ""
         for (var key in metadataFilter) {
-            para += key + ":" + metadataFilter[key]+ "\n"
-        
+            para += key + ":" + metadataFilter[key] + " \n"
+
         };
 
         console.log(para);
