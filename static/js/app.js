@@ -1,4 +1,4 @@
-json_path = "../../../data/samples.json"
+json_path = "../../data/samples.json"
 
 function init() {
     data = [{
