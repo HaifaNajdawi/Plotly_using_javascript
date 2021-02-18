@@ -1,4 +1,4 @@
-json_path = "../../data/samples.json"
+json_path = "samples.json"
 
 function init() {
     dataBar = [{
