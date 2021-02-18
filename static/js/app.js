@@ -122,7 +122,7 @@ function updatePage() {
         // console.log("metadataFilter",Object.keys(metadataFilter).length)
         let para = ""
         for (var key in metadataFilter) {
-            para += key + ": " + metadataFilter[key] +"<br>"
+            para += key + ": " + metadataFilter[key] + "<br>"
 
         };
 
@@ -135,8 +135,8 @@ function updatePage() {
         var level = washingFreq;
 
         // Trig to calc meter point
-        var degrees = 9 - level,
-            radius = .5;
+        var degrees = 9 - level;
+        radius = .5;
         var radians = degrees * Math.PI / 9;
         var x = radius * Math.cos(radians);
         var y = radius * Math.sin(radians);
@@ -210,16 +210,14 @@ function updatePage() {
         // var gaugeLayout = { width: 600, height: 400 };
         Plotly.newPlot('gauge', gaugeData, gaugelayout);
 
-
-
     });
 
 
-
-
-
 };
+
+
 init();
+
 
 
 
