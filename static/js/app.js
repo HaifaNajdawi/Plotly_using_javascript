@@ -46,13 +46,13 @@ function init() {
 
 
 
-d3.json(json_path).then(function (data) {
-    console.log("data", data);
-});
+// d3.json(json_path).then(function (data) {
+//     console.log("data", data);
+// });
 
-// Promise Pending
-const dataPromise = d3.json(json_path);
-console.log("Data Promise: ", dataPromise);
+// // Promise Pending
+// const dataPromise = d3.json(json_path);
+// console.log("Data Promise: ", dataPromise);
 
 // select id that will work on it 
 listId = d3.selectAll("#selDataset")
