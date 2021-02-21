@@ -3,7 +3,7 @@
 In this Repo you will find JavaScript file, json file and Html file. 
 
 I used in the JS file functions thats work since I clicked on it to run the code.
-there is init() function using Plotly library to create bar chart, bubble chart and guage chart.
+there is init() function using Plotly library to create bar chart, bubble chart and gauge chart.
 
 The charts and information box work in diffrents values since the id change.
 
@@ -23,7 +23,7 @@ And here we are sample of the charts:
 
 ![](images/bar_chart.png)
 
-* Guage chart:
+* Gauge chart:
 
 ![](images/guage_chart.png)
 

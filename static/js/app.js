@@ -136,6 +136,7 @@ function updatePage() {
 
         // Trig to calc meter point
         var degrees = 9 - level;
+        // pointer lenght 
         radius = .5;
         var radians = degrees * Math.PI / 9;
         var x = radius * Math.cos(radians);
@@ -150,18 +151,22 @@ function updatePage() {
         var path = mainPath.concat(pathX, space, pathY, pathEnd);
 
         var gaugeData = [{
+            // pointer Spot place 
             type: 'scatter',
             x: [0], y: [0],
             marker: { size: 10, color: '850000' },
             showlegend: false,
             text: level,
-            times: 1,
-            hoverinfo: 'text+ +name'
+            name: "times",
+            // infomation on the scatter spot
+            hoverinfo: 'text+name'
         },
         {
+            // pie divied on 50 on 9 items because we want just half pie
             values: [50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50 / 9, 50],
 
             rotation: 90,
+            // text on the sections
             text: ['0-1', '1-2', '2-3', '3-4',
                 '4-5', '5-6', '6-7', '7-8', '8-9'],
             direction: 'clockwise',
@@ -172,9 +177,10 @@ function updatePage() {
                 colors: ['#FF00FF', '#DA70D6',
                     '#C71585', '#DB7093',
                     '#FF1493', '#FF69B4	',
+                    // put 50 half of pie white color
                     '#FFB6C1	', '#FFC0CB	', '#FAEBD7	', 'white'],
                 labels: ['0-1', '1-2', '2-3', '3-4', '4-5', '5-6', '6-7', '7-8', '8-9'],
-                hoverinfo: 'label'
+                // hoverinfo: 'label'
 
 
             },
@@ -185,6 +191,7 @@ function updatePage() {
         }];
         var gaugelayout = {
             shapes: [{
+                // tringel formate 
                 type: 'path',
                 path: path,
                 fillcolor: '850000',
@@ -196,6 +203,7 @@ function updatePage() {
             // height: 1000,
             // width: 1000,
             xaxis: {
+                // disapeare x accordinater 
                 zeroline: false, showticklabels: false,
                 showgrid: false, range: [-1, 1]
             },
